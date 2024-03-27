@@ -12,7 +12,7 @@ function Rating({ rating_info }) {
       const ratingid = rating_info.result.map((item, index) => index + 1);
       setRatingData({ ratingarray, ratingid });
     }
-    setwidth(window.innerWidth - 200);
+    setwidth(window.innerWidth / 1.5);
     setheight(window.innerHeight / 2);
   }, [rating_info, width, height]);
 
