@@ -8,9 +8,7 @@ export default {
     extend: {},
   },
   plugins: [
-    require('flowbite/plugin')({
-      charts: true,
-    }),
+
     // ... other plugins
   ]
 }

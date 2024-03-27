@@ -2,16 +2,22 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { user_info } from "./Index/api.js";
+
 import { lastseen } from "./Functions/LastSeen.js";
 import { FaSearch } from "react-icons/fa";
 import { IoPeopleSharp } from "react-icons/io5";
 import { FaHandsHelping } from "react-icons/fa";
 import Rating from "./Components/Rating";
+import { user_rating, user_info, Message } from "./Index/api.jsx";
+
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   const [count, setCount] = useState(0);
   const [user, setUser] = useState("");
   const [user_arry, setUser_array] = useState();
+  const [rating_array, setRating_array] = useState();
+
   const user_rating_color = {
     newbie: "bg-gray-400",
     pupil: "bg-green-400",
@@ -30,8 +36,11 @@ function App() {
     const userInfoPromise = user_info(user_name);
     const userInfo = await userInfoPromise;
     console.log(userInfo);
-
     setUser_array(userInfo.result[0]);
+    const rating_info = user_rating(user_name);
+    const rating = await rating_info;
+    console.log(rating);
+    setRating_array(rating);
   };
 
   return (
@@ -53,6 +62,7 @@ function App() {
           <FaSearch className="text-3xl " />
         </button>
       </div>
+      <Message />
       <div className="flex justify-center m-4">
         {user_arry && (
           <div className="dashboard w-[90vw] bg-slate-600 p-6 rounded-3xl grid grid-cols-2  ">
@@ -130,7 +140,7 @@ function App() {
               </p>
             </div>
             <div className="col-span-2">
-              <Rating />
+              <Rating rating_info={rating_array} />
             </div>
           </div>
         )}
