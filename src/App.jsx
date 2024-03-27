@@ -50,7 +50,7 @@ function App() {
           type="text"
           value={user || ""}
           onChange={(e) => setUser(e.target.value)}
-          className="text-gray-700 text-xl p-4 rounded-lg w-[50vw]   "
+          className="text-gray-700 bg-slate-100 text-xl p-4 rounded-lg w-[50vw]   "
           placeholder="User_name"
         />
 
