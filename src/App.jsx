@@ -44,13 +44,13 @@ function App() {
   };
 
   return (
-    <>
-      <div className="flex justify-center gap-5  w-full">
+    <div className=" flex flex-col justify-center items-center">
+      <div className="flex justify-center items-center gap-5  max-w-[80vw] m-auto">
         <input
           type="text"
           value={user || ""}
           onChange={(e) => setUser(e.target.value)}
-          className="text-gray-700 text-xl p-4 rounded-lg w-[40vw]  "
+          className="text-gray-700 text-xl p-4 rounded-lg w-[50vw]   "
           placeholder="User_name"
         />
 
@@ -63,9 +63,9 @@ function App() {
         </button>
       </div>
       <Message />
-      <div className="flex justify-center m-4">
+      <div className="flex justify-center m-4  max-w-[80vw]">
         {user_arry && (
-          <div className="dashboard w-[90vw] bg-slate-600 p-6 rounded-3xl grid grid-cols-2  ">
+          <div className="dashboard w-[90vw] bg-slate-600 p-6 rounded-3xl flex lg:justify-evenly justify-center items-center flex-wrap">
             <div className="flex flex-col justify-center row-span-2 items-center grid-flow-col">
               <img
                 src={user_arry?.titlePhoto}
@@ -80,8 +80,8 @@ function App() {
                 {user_arry?.firstName + " "}
                 {user_arry?.lastName}
               </h1>
-              <div>
-                <div className="flex gap-4 mt-4">
+              <div className="mt-4">
+                <div className="flex flex-wrap justify-center items-center gap-4 mt-4">
                   <div className="flex items-center">
                     <FaHandsHelping className="text-xl" />
                     <span className="ml-2">
@@ -98,54 +98,57 @@ function App() {
                 </div>
               </div>
 
-              <p className="text-3 font-bold bg-slate-700 p-3 rounded-lg ">
+              <p className="text-3 font-bold bg-slate-700 p-3 rounded-lg  mt-4">
                 {user_arry?.city + " , " + user_arry?.country}
               </p>
-              <h1 className="text-3 font-bol">
+              <h1 className="text-3 font-bol mt-4">
                 Organization :{" "}
                 <span className="font-thin"> {user_arry?.organization}</span>
               </h1>
             </div>
-            <div className="maxrating my-3">
-              <h1 className="text-xl">Current Rank</h1>
-              <h1
-                className={`font-semibold p-3 text-xl rounded-lg ${
-                  user_rating_color[user_arry?.rank]
-                }`}
-              >
-                {user_arry?.rank}
-              </h1>
-              <p
-                className={`text-3 font-bold my-4 bg-slate-700 ring-white ring-2 ring-${
-                  user_rating_color[user_arry?.rank]
-                } p-2 rounded-md`}
-              >
-                Current Rating :{" "}
-                <span className="font-semibold ">{user_arry?.rating}</span>
-              </p>
+            <div className="flex flex-col  justify-center items-center">
+              <div className="maxrating my-3 ">
+                <h1 className="text-xl">Current Rank</h1>
+                <h1
+                  className={`font-semibold p-3 text-xl rounded-lg ${
+                    user_rating_color[user_arry?.rank]
+                  }  `}
+                >
+                  {user_arry?.rank}
+                </h1>
+                <p
+                  className={`text-3 font-bold my-4 bg-slate-700 ring-white ring-2 ring-${
+                    user_rating_color[user_arry?.rank]
+                  } p-2 rounded-md`}
+                >
+                  Current Rating :{" "}
+                  <span className="font-semibold ">{user_arry?.rating}</span>
+                </p>
+              </div>
+              <div className="maxrating my-3 bg-slate-200 p-6 rounded-lg max-w-[80vw]">
+                <h1
+                  className={`font-semibold p-3 text-xl rounded-lg  ${
+                    user_rating_color[user_arry?.maxRank]
+                  } max-w-[80vw]`}
+                >
+                  {user_arry?.maxRank}
+                </h1>
+                <p
+                  className={`text-3 font-bold my-4 bg-slate-700  p-2 rounded-md max-w-[80vw]`}
+                >
+                  Maximum Rating :{" "}
+                  <span className="font-semibold ">{user_arry?.maxRating}</span>
+                </p>
+              </div>
             </div>
-            <div className="maxrating my-3 bg-slate-200 p-6 rounded-lg">
-              <h1
-                className={`font-semibold p-3 text-xl rounded-lg  ${
-                  user_rating_color[user_arry?.maxRank]
-                } `}
-              >
-                {user_arry?.maxRank}
-              </h1>
-              <p
-                className={`text-3 font-bold my-4 bg-slate-700  p-2 rounded-md`}
-              >
-                Maximum Rating :{" "}
-                <span className="font-semibold ">{user_arry?.maxRating}</span>
-              </p>
-            </div>
+
             <div className="col-span-2">
               <Rating rating_info={rating_array} />
             </div>
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

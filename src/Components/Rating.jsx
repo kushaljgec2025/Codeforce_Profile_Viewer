@@ -3,6 +3,8 @@ import { LineChart } from "@mui/x-charts/LineChart";
 
 function Rating({ rating_info }) {
   const [ratingData, setRatingData] = useState([]);
+  const [width, setwidth] = useState(window.innerWidth - 200);
+  const [height, setheight] = useState(window.innerHeight / 2);
 
   useEffect(() => {
     if (rating_info?.result) {
@@ -10,7 +12,10 @@ function Rating({ rating_info }) {
       const ratingid = rating_info.result.map((item, index) => index + 1);
       setRatingData({ ratingarray, ratingid });
     }
-  }, [rating_info]);
+    setwidth(window.innerWidth - 200);
+    setheight(window.innerHeight / 2);
+  }, [rating_info, width, height]);
+
   console.log(ratingData);
   return (
     <div>
@@ -20,10 +25,11 @@ function Rating({ rating_info }) {
           series={[
             {
               data: ratingData.ratingarray,
+              color: "#fdb462",
             },
           ]}
-          width={1200}
-          height={500}
+          width={width}
+          height={height}
         />
       )}
     </div>
