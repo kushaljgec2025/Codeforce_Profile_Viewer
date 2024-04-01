@@ -12,7 +12,7 @@ const user_info = async (user_name) => {
       toast.error("User not found");
       throw new Error("Failed to fetch user information");
     }
-
+    toast.success("User found successfully");
     const data = await response.json();
 
     return data;
@@ -44,7 +44,7 @@ const user_rating = async (user_name) => {
 export function Message() {
   return (
     <div>
-      <ToastContainer />
+      <ToastContainer autoClose={2000} />
     </div>
   );
 }
